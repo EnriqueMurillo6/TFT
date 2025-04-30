@@ -21,8 +21,8 @@ from pytorch_forecasting.models.temporal_fusion_transformer.tuning import (
 )
 
 
-path_train = "Train-Test/df_train.parquet"
-path_test = "Train-Test/df_test.parquet"
+path_train = "df_train.parquet"
+path_test = "df_test.parquet"
 
 df_train = pd.read_parquet(path_train)
 df_test = pd.read_parquet(path_test)
