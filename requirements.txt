@@ -2,7 +2,6 @@ pandas
 numpy
 matplotlib
 torch
-pytorch
 pytorch-lightning==1.8.6
 pytorch-forecasting==1.3.0
 scikit-learn
