@@ -2,8 +2,8 @@ torch
 torchvision
 torchaudio
 
-pytorch-lightning==1.9.5
-pytorch-forecasting==1.0.0
+pytorch-lightning==1.8.6
+pytorch-forecasting==1.3.0
 scikit-learn
 pandas
 numpy
