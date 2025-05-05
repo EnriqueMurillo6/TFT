@@ -63,8 +63,8 @@ df_train, df_val = train_test_split(df_train, test_size=0.2, shuffle=False)
 train = TimeSeriesDataSet.from_dataset(training, df_train, predict=False)
 val = TimeSeriesDataSet.from_dataset(training, df_val, predict=False)
 
-train_dataloader = train.to_dataloader(train=True, batch_size=32, num_workers=0)
-val_dataloader = val.to_dataloader(train=False, batch_size=32, num_workers=0)
+train_dataloader = train.to_dataloader(train=True, batch_size=128, num_workers=0)
+val_dataloader = val.to_dataloader(train=False, batch_size=128, num_workers=0)
 
 from pytorch_forecasting.models import TemporalFusionTransformer
 from pytorch_forecasting.metrics import QuantileLoss
@@ -72,7 +72,7 @@ from pytorch_forecasting.metrics import QuantileLoss
 tft = TemporalFusionTransformer.from_dataset(
     training,
     learning_rate=1e-3,
-    hidden_size=16,
+    hidden_size=8,
     attention_head_size=1,
     dropout=0.1,
     loss=QuantileLoss(),
@@ -83,6 +83,6 @@ tft = TemporalFusionTransformer.from_dataset(
 from pytorch_lightning import Trainer
 
 
-trainer = pl.Trainer(max_epochs=30, accelerator="gpu" if torch.cuda.is_available() else "cpu")
+trainer = pl.Trainer(max_epochs=30, accelerator="gpu")
 trainer.fit(tft, train_dataloaders=train_dataloader, val_dataloaders=val_dataloader)
 
