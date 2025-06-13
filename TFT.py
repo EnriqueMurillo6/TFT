@@ -96,7 +96,8 @@ tft = CustomTFT.from_dataset(
     learning_rate=0.001,
     hidden_size=512,
     attention_head_size=2,
-    dropout=0.2,
+    lstm_layers=2,
+    dropout=0.1,
     output_size=6,
     loss=QuantileLoss(quantiles=[0.5]),
     log_interval=10,
@@ -137,3 +138,9 @@ actuals = torch.cat(actuals).numpy()
 actuals_df = pd.DataFrame(actuals)
 rmse = root_mean_squared_error(actuals_df, predictions_df)
 print(rmse)
+mae = mean_absolute_error(predictions_df, actuals_df)
+print(f'RMSE:{rmse}')
+print(f'MAE: {mae}')
+
+# Guardar el modelo
+#trainer.save_checkpoint("tft_model.ckpt")
